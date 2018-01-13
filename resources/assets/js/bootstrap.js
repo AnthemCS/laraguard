@@ -11,7 +11,29 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap-sass');
+    require('daterangepicker');
+    require('moment');
+
+    $(function() {
+
+        var $duration = $('input[name="daterange"]').daterangepicker({
+
+            locale: {
+                format: 'YYYY-MM-DD'
+              },
+        });
+
+       var $arrival_date = $('input[name="arrival_date"]');
+       var $departure_date =  $('input[name="departure_date"]');
+
+        $duration.on('apply.daterangepicker', function(ev, picker) {
+            $arrival_date.val(picker.startDate.format('YYYY-MM-DD'));
+            $departure_date.val(picker.endDate.format('YYYY-MM-DD'));
+        });
+    });
+
 } catch (e) {}
+
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -53,3 +75,4 @@ if (token) {
 //     cluster: 'mt1',
 //     encrypted: true
 // });
+

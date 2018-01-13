@@ -18,5 +18,9 @@
     "lodash": "^4.17.4",
     "semantic-ui-css": "^2.2.12",
     "vue": "^2.5.7"
+  },
+  "dependencies": {
+    "bootstrap-datepicker": "^1.7.1",
+    "daterangepicker": "^2.1.27"
   }
 }
