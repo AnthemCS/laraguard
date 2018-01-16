@@ -16,4 +16,10 @@ class Reservation extends Model
         "children",
         "comments"
     ];
+
+
+    public function guest() 
+    {
+        return $this->belongsTo('App\Guest');
+    }
 }

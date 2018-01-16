@@ -16,6 +16,10 @@ class GuestReservationController extends Controller
     public function index()
     {
         //
+
+        $reservations = Reservation::with('guest')->get();
+
+        return view('reservation.index', ['reservations' => $reservations]);
     }
 
     /**
@@ -26,7 +30,7 @@ class GuestReservationController extends Controller
     public function create()
     {
         //
-        return view("reservation");
+        return view('reservation.create');
     }
 
     /**

@@ -1,4 +1,5 @@
-@extends('layouts.app') @section('content')
+@extends('layouts.app') 
+@section('content')
 
 <h1 class="text-center">Make Reservation</h1>
 <div class="container">
@@ -229,7 +230,7 @@
                                     <label for="children" class="col-md-4 control-label">No. of Children</label>
     
                                     <div class="col-md-6">
-                                        <input id="children" type="number" class="form-control" value="{{ old('children')}}" name="children" required>
+                                        <input id="children" type="number" class="advanced_select form-control" value="{{ old('children')}}" name="children" required>
                                          @if ($errors->has('children'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('children') }}</strong>
