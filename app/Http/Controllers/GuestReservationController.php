@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreReservationRequest;
 use App\Reservation;
 use App\Guest;
 
@@ -39,13 +40,11 @@ class GuestReservationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreReservationRequest $request)
     {
         //
-        $data = $request->all();
-        
-        
-     
+         $data = $request->all();
+
         $newGuest = Guest::create([
           "title"       => $data['title'],
           "firstname"   => $data['firstname'],         
@@ -69,7 +68,7 @@ class GuestReservationController extends Controller
            "comments"       => $data['comments']
         ]);
 
-        dd($newGuest);
+        return redirect('reservation')->with('status', 'Reservation Sent Succesfully');
     }
 
     /**

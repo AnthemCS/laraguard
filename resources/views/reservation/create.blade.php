@@ -1,6 +1,14 @@
 @extends('layouts.app') 
 @section('content')
-
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <h1 class="text-center">Make Reservation</h1>
 <div class="container">
     <form class="form-horizontal" method="POST" action="{{ route('reservation.store') }}">
@@ -33,7 +41,7 @@
                         <!-- /input:title -->
 
                         <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
-                            <label for="title" class="col-md-4 control-label">First name</label>
+                            <label for="firstname" class="col-md-4 control-label">First name</label>
 
                             <div class="col-md-6">
                                 <input id="firstname" type="text" class="form-control" name="firstname" value="{{ old('firstname') }}" required> @if ($errors->has('firstname'))
@@ -73,7 +81,8 @@
                             <label for="contact_no" class="col-md-4 control-label">Contact Number</label>
 
                             <div class="col-md-6">
-                                <input id="contact_no" type="tel" class="form-control" name="contact_no" required> @if ($errors->has('contact_no'))
+                                <input id="contact_no" type="text" class="form-control" name="contact_no" required>
+                                @if ($errors->has('contact_no'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('contact_no') }}</strong>
                                 </span>
@@ -97,7 +106,8 @@
                             <label for="addr_line_1" class="col-md-4 control-label">Address Line 1</label>
 
                             <div class="col-md-6">
-                                <input id="addr_line_1" type="text" class="form-control" name="addr_line_1" required> @if ($errors->has('addr_line_1'))
+                                <input id="addr_line_1" type="text" value="{{ old('addr_line_1') }}" class="form-control" name="addr_line_1" required>
+                                @if ($errors->has('addr_line_1'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('addr_line_1') }}</strong>
                                 </span>
@@ -108,7 +118,8 @@
                             <label for="addr_line_2" class="col-md-4 control-label">Address Line 2</label>
 
                             <div class="col-md-6">
-                                <input id="addr_line_2" type="text" class="form-control" name="addr_line_2" required> @if ($errors->has('addr_line_2'))
+                                <input id="addr_line_2" type="text" class="form-control" value="{{ old('addr_line_2') }}"  name="addr_line_2">
+                                @if ($errors->has('addr_line_2'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('addr_line_2') }}</strong>
                                 </span>
@@ -119,7 +130,8 @@
                             <label for="city" class="col-md-4 control-label">City</label>
 
                             <div class="col-md-6">
-                                <input id="city" type="text" class="form-control" name="city" required> @if ($errors->has('city'))
+                                <input id="city" type="text" class="form-control" value="{{ old('city') }}" name="city" required>
+                                @if ($errors->has('city'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('city') }}</strong>
                                 </span>
@@ -131,7 +143,8 @@
                             <label for="postal_code" class="col-md-4 control-label">Postal code</label>
 
                             <div class="col-md-2">
-                                <input id="postal_code" min="0" type="number" class="form-control" name="postal_code" required> @if ($errors->has('postal_code'))
+                                <input id="postal_code" min="0" type="number" value="{{ old('postal_code') }}" class="form-control" name="postal_code" required>
+                                @if ($errors->has('postal_code'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('postal_code') }}</strong>
                                 </span>
@@ -172,9 +185,6 @@
 
                             <div class="form-group{{ $errors->has('duration') ? ' has-error' : '' }}">
                                     <label for="duration" class="col-md-4 control-label">Duration of Stay</label>
-                                    
-    
-                                
                                             <div class="col-md-6">
                                                     <input type="text" class="form-control" name="daterange" value="{{ old('duration')}}" required/>
                                                 @if ($errors->has('duration'))
@@ -242,7 +252,7 @@
                                         <label for="comments" class="col-md-4 control-label">Comments/Notes</label>
         
                                         <div class="col-md-6">
-                                            <textarea class="form-control" name="comments" value="{{ old('comments') }}"></textarea>
+                                            <textarea class="form-control" name="comments">{{ old('comments') }}</textarea>
                                              @if ($errors->has('comments'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('comments') }}</strong>
