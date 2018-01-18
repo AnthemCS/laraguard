@@ -35,6 +35,7 @@ class StoreReservationRequest extends FormRequest
             'city'        => 'required|max:255',
             'postal_code' => 'required|max:10',
             'country'     => 'required|max:255',
+            'nights'      => 'required|numeric|max:5',
             'adults'      => 'required|numeric|max:255',
             'children'    => 'required|numeric|max:255',
             'comments'    => 'required|max:255'

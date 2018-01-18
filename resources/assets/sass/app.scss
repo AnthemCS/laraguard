@@ -1,16 +1,25 @@
 
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+//// Fonts
+//@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+//
+//// Variables
+//@import "variables";
 
-// Variables
-@import "variables";
-
+/*
+!*
 //Components
 @import "components/dashboard";
 //@import "components/hotel";
+*!
 
-// Bootstrap
+// Bootstrap 3
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+*/
+
+// Bootstrap 4
+
+// Starter Bootstrap Admin
+//@import "~startbootstrap-sb-admin/scss";
 
 // Bootstrap DatePicker
 @import "~daterangepicker/daterangepicker.scss";

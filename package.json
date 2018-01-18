@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "bootstrap-datepicker": "^1.7.1",
-    "daterangepicker": "^2.1.27"
+    "daterangepicker": "^2.1.27",
+    "startbootstrap-sb-admin": "^4.0.0-beta"
   }
 }

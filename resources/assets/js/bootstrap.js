@@ -10,10 +10,10 @@ window._ = require('lodash');
 try {
     window.$ = window.jQuery = require('jquery');
 
-    require('bootstrap-sass');
+    //require('bootstrap-sass');
     require('daterangepicker');
-    require('moment');
-
+    //require('moment');
+    //require('startbootstrap-sb-admin');
     $(function() {
 
         var $duration = $('input[name="daterange"]').daterangepicker({

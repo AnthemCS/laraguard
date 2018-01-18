@@ -59,10 +59,11 @@ class GuestReservationController extends Controller
           "country"     => $data['country']      
         ]); 
 
-        $newReservation = Reservation::create([
+        Reservation::create([
            "guest_id"       => $newGuest->id,
            "arrival_date"   => date_format(date_create($data['arrival_date']), 'Y-m-d'),
            "departure_date" => date_format(date_create($data['departure_date']), 'Y-m-d'),
+            "nights"        => $data['nights'],
            "adults"         => $data['adults'],
            "children"       => $data['children'],
            "comments"       => $data['comments']

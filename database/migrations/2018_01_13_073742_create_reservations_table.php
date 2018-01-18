@@ -18,9 +18,10 @@ class CreateReservationsTable extends Migration
             $table->integer("guest_id");
             $table->date("arrival_date");
             $table->date("departure_date");
+            $table->integer('nights')->default(1);
             $table->integer("adults");
-            $table->integer("children");            
-            $table->longText("comments");            
+            $table->integer("children");
+            $table->longText("comments");
             $table->timestamps();
         });
     }
