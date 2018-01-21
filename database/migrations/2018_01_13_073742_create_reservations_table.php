@@ -16,10 +16,11 @@ class CreateReservationsTable extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer("guest_id");
-            $table->integer("room_id");
+            $table->integer("room_id")->nullable();
+            $table->integer("service_id")->nullable();
             $table->date("arrival_date");
             $table->date("departure_date");
-            $table->integer('nights')->default(1);
+            $table->integer('nights')->default(0);
             $table->integer("adults");
             $table->integer("children");
             $table->longText("comments");

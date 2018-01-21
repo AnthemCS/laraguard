@@ -11,6 +11,7 @@ class Reservation extends Model
     protected $fillable = [
         "guest_id",
         "room_id",
+        "service_id",
         "arrival_date",
         "departure_date",
         "adults",
@@ -25,9 +26,14 @@ class Reservation extends Model
         return $this->belongsTo('App\Guest');
     }
 
-    public function room()
+    public function rooms()
     {
-        return $this->belongsTo('App\Room');
+        return $this->hasMany('App\Room', 'id', 'room_id');
+    }
+
+    public function services()
+    {
+        return $this->hasMany('App\Services', 'id', 'service_id');
     }
     
 

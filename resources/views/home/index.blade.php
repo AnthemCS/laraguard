@@ -44,13 +44,18 @@
                                         <td>{{ $r->arrival_date }}</td>
                                         <td>{{ $r->departure_date }}</td>
                                         <td><a href="{{ route('reservations.show',$r->id ) }}">{{ $r->guest->firstname }} {{ $r->guest->lastname }}</a></td>
-                                        <td>{{ $r->room->room_title }}</td>
-                                        <td>{{ $r->nights }}</td>
-                                        <td>{{ $r->comments }}</td>
+                                       @if(!is_null($r->rooms))
+                                            <td>
+                                               @foreach($r->rooms as $room)
+                                                <span class="badge badge-pill badge-secondary">{{ $room->id }}</span>
+                                               @endforeach
+                                       @endif
+                                            </td>
+                                                <td>{{ $r->nights }}</td>
+                                                <td>{{ $r->comments }}</td>
                                         <td><a href="" class="btn btn-outline-success btn-sm">Check-In</a> <a
                                                     href="#print-invoice" class="btn btn-outline-primary btn-sm">Print Invoice</a></td>
                                     </tr>
-                                </a>
                             @endforeach
                             </tbody>
                         </table>
