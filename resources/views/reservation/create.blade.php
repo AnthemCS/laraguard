@@ -9,9 +9,23 @@
     </ul>
 </div>
 @endif
-<h1 class="text-center">Make Reservation</h1>
+<h1 class="text-center text-white">Make Reservation</h1>
+
 <div class="container">
-    <form class="form-horizontal" method="POST" action="{{ route('reservation.store') }}">
+    <div class="row">
+        <div class="col">
+            <div class="card my-4 bg-dark text-dark text-center">
+                <img class="card-img" src="https://dummyimage.com/1149x270/eeeeee/000" alt="Card image">
+                <div class="card-img-overlay">
+                    <h5 class="card-title">{{ $room->room_title }}</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text">Last updated 3 mins ago</p>
+                    <a href="#" class="btn btn-outline-success">Check Availability</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form class="form-horizontal" method="POST" action="{{ url('reservation/'.$room->id.'/create') }}">
         {{ csrf_field() }}
         <div class="row">
             <div class="col">
@@ -191,7 +205,7 @@
                     <div class="card-body">
                             <!-- /input:arrival -->
 
-                            <div class="form-group{{ $errors->has('duration') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('duration') ? ' has-error' : '' }}">
                                     <label for="duration" class="control-label">Duration of Stay</label>
 
                                                     <input type="text" class="form-control" name="daterange" value="{{ old('duration')}}" required/>
@@ -273,7 +287,7 @@
                             </div>
                         </div>
 
-                                <div class="form-group{{ $errors->has('comments') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('comments') ? ' has-error' : '' }}">
                                         <label for="comments" class="control-label">Comments/Notes</label>
         
 

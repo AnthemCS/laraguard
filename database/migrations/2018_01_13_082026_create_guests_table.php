@@ -28,8 +28,6 @@ class CreateGuestsTable extends Migration
             $table->string("country");
             $table->timestamps();
         });
-
-        
     }
 
     /**

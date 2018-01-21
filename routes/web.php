@@ -12,12 +12,33 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', ['rooms' => App\Room::all()]);
 });
 
-Route::resource('/reservation', 'GuestReservationController');
+Route::get('/test', function () {
+    return view('home.test');
+});
+
+Route::get('/reservation/{roomId}/create', 'GuestReservationController@getCreateReservation');
+Route::post('/reservation/{roomId}/create', 'GuestReservationController@postCreateReservation');
 
 Auth::routes();
-
+# Home Routes
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('home/free-today', 'HomeController@getFreeRoomsToday')->name('home.free-today');
+Route::get('home/create-reservation/{roomId}', 'HomeController@getNewReservation')->name('home.new-reservation');
 
+# Reservation Routes
+Route::resource('reservations', 'ReservationController');
+
+# Room Routes
+Route::resource('/rooms', 'RoomController');
+
+# Guest Routes
+Route::resource('guests', 'GuestController');
+
+# Products/ Services
+Route::resource('services', 'ServicesController');
+
+# Invoices
+Route::resource('invoices', 'InvoiceController');

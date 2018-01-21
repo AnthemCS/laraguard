@@ -10,11 +10,13 @@ class Reservation extends Model
 
     protected $fillable = [
         "guest_id",
+        "room_id",
         "arrival_date",
         "departure_date",
         "adults",
         "children",
-        "comments"
+        "comments",
+        "status"
     ];
 
 
@@ -22,4 +24,11 @@ class Reservation extends Model
     {
         return $this->belongsTo('App\Guest');
     }
+
+    public function room()
+    {
+        return $this->belongsTo('App\Room');
+    }
+    
+
 }
