@@ -53,8 +53,16 @@
                                             </td>
                                                 <td>{{ $r->nights }}</td>
                                                 <td>{{ $r->comments }}</td>
-                                        <td><a href="" class="btn btn-outline-success btn-sm">Check-In</a> <a
-                                                    href="#print-invoice" class="btn btn-outline-primary btn-sm">Print Invoice</a></td>
+                                        <td><div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                   Action
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu2">
+                                                    <a class="dropdown-item" >Action</a>
+                                                    <a class="dropdown-item" >Another action</a>
+                                                    <a class="dropdown-item" >Something else here</a>
+                                                </div>
+                                            </div></td>
                                     </tr>
                             @endforeach
                             </tbody>

@@ -135,10 +135,19 @@
                                                 </tr>
                                                 @endforeach
                                               @endif
+                                                <tr>
+                                                    <td colspan="5">
+                                                        <select class="form-control" name="" id="">
+                                                           @foreach($rsv->rooms as $room)
+                                                            <option value="{{ $room->room_title }}">{{ $room->room_title }}</option>
+                                                           @endforeach
+                                                        </select>
+                                                    </td>
+                                                    <td><a href="#add-room" class="btn btn-sm btn-outline-primary"> Add a Room</a></td>
+                                                </tr>
 
                                                 </tbody>
                                             </table>
-                                            <a href="#add-room" class="btn btn-sm btn-success">+ Add Room</a>
                                         </div>
                                     </div>
                                 </li>
@@ -163,10 +172,19 @@
                                                     <td><a class="btn btn-outline-danger btn-sm" href="{{ route('services.destroy', $s->id) }}">Remove</a></td>
                                                 </tr>
                                                 @endforeach
-                                               @endif
+                                           @endif
+                                           <tr>
+                                               <td colspan="3">
+                                                   <select class="form-control" name="" id="">
+                                                       @foreach($rsv->services as $s)
+                                                           <option value="{{ $s->name }}">{{ $s->name }}</option>
+                                                       @endforeach
+                                                   </select>
+                                               </td>
+                                               <td><a href="#add-room" class="btn btn-sm btn-outline-primary"> Add a Service</a></td>
+                                           </tr>
                                                 </tbody>
                                             </table>
-                                            <a href="#add-room" class="btn btn-sm btn-success">+ Add Service</a>
                                         </div>
                                     </div>
                                 </li>

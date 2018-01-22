@@ -2,37 +2,38 @@
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" href="{{ route('home') }}">
+                <a class="nav-link {{ (url()->current() === env('APP_URL').':8000/home') ? 'active': '' }}" href="{{ route('home') }}">
                     <span data-feather="home"></span>
                     Dashboard <span class="sr-only">(current)</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('reservations.index') }}">
+
+                <a class="nav-link {{ (url()->current() == env('APP_URL').':8000/reservations') ? 'active': '' }}" href="{{ route('reservations.index') }}">
                     <span data-feather="file"></span>
                     Reservations
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('rooms.index') }}">
+                <a class="nav-link {{ (url()->current() == env('APP_URL').':8000/rooms') ? 'active': '' }}" href="{{ route('rooms.index') }}">
                     <span data-feather="tag"></span>
                    Rooms
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('guests.index') }}">
+                <a class="nav-link {{ (url()->current() == env('APP_URL').':8000/guests') ? 'active': '' }}" href="{{ route('guests.index') }}">
                     <span data-feather="users"></span>
                     Guests
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('services.index') }}">
+                <a class="nav-link {{ (url()->current() == env('APP_URL').':8000/services') ? 'active': '' }}" href="{{ route('services.index') }}">
                     <span data-feather="package"></span>
                     Products & Services
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('invoices.index') }}">
+                <a class="nav-link {{ (url()->current() == env('APP_URL').':8000/invoices') ? 'active': '' }}" href="{{ route('invoices.index') }}">
                     <span data-feather="layers"></span>
                     Invoices
                 </a>

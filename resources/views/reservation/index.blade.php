@@ -5,15 +5,78 @@
            <div class="col my-3">
                <h3 class="d-flex justify-content-between align-items-center mb-3">
                    <span>Reservations <span class="badge badge-primary"></span> </span>
-                   <a href="{{ route('reservations.create') }}" class="btn btn-outline-success">Add Reservation</a>
+                   <a href="{{ route('reservations.create') }}" class="btn btn-outline-primary">Add a Reservation</a>
                </h3>
                <hr>
            </div>
        </div>
        <div class="row">
-           <div class="col-md-8">
-               <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                   <li class="px-4"><h2>Reservations</h2></li>
+           <div class="col-md-12 mb-5">
+               <div class="card">
+                   <div class="card-body">
+                       <h5 class="card-title">Card title</h5>
+                       <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                       <a href="#" class="card-link">Card link</a>
+                       <a href="#" class="card-link">Another link</a>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <div class="row">
+           <div class="col">
+               <form action="" method="GET" class="form">
+                   {{ csrf_field() }}
+                   <div class="form-row">
+                       <div class="form-group{{ $errors->has('guest') ? ' has-error' : '' }} col-md-2">
+
+                           <select name="guest" class="form-control form-control-lg" id="guest" required autofocus>
+                               <option value="" selected> All Guests</option>
+                               <option value="mr">Guest 1</option>
+                               <option value="mrs">Guest 2</option>
+                               <option value="miss">Guest 3</option>
+                           </select>
+                       </div>
+                       <!-- /input:title -->
+                       <div class="form-group{{ $errors->has('') ? ' has-error' : '' }} col-md-2">
+                           <select name="guest" class="form-control form-control-lg" id="guest" required autofocus>
+
+                               <option value="mr">All Statuses</option>
+                               <option value="mrs">Check-In</option>
+                               <option value="miss">Cancelled</option>
+                           </select>
+
+                       </div>
+
+                       <div class="form-group{{ $errors->has('duration') ? ' has-error' : '' }} col-md-5">
+
+                           <input type="text" class="form-control form-control-lg" name="daterange" value="{{ old('duration')}}" required/>
+                           @if ($errors->has('duration'))
+                               <span class="help-block">
+                            <strong>{{ $errors->first('duration') }}</strong>
+                        </span>
+                           @endif
+                       </div>
+                       <div class="form-group{{ $errors->has('res_no') ? ' has-error' : '' }} col">
+                           <input id="res_no" type="text" value="{{ old('res_no') }}" placeholder="Enter #" class="form-control form-control-lg" name="res_no" required>
+                           @if ($errors->has('res_no'))
+                               <span class="help-block">
+                                    <strong>{{ $errors->first('res_no') }}</strong>
+                                </span>
+                           @endif
+                       </div>
+                       <div class="form-group col">
+                           <button class="btn btn-lg btn-primary">Apply Filters</button>
+                       </div>
+
+                   </div>
+               </form>
+           </div>
+
+       </div>
+       <div class="row">
+           <div class="col">
+               <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
                    <li class="nav-item">
                        <a class="nav-link active" id="pills-yesterday-tab" data-toggle="pill" href="#pills-yesterday" role="tab" aria-controls="pills-yesterday" aria-selected="true">Yesterday <span class="badge badge-light">45</span></a>
                    </li>
@@ -24,7 +87,7 @@
                        <a class="nav-link" id="pills-tomorrow-tab" data-toggle="pill" href="#pills-tomorrow" role="tab" aria-controls="pills-tomorrow" aria-selected="false">Tomorrow <span class="badge badge-light">8</span></a>
                    </li>
                </ul>
-               <hr>
+
                <div class="tab-content" id="pills-tabContent">
                    <div class="tab-pane fade show active" id="pills-yesterday" role="tabpanel" aria-labelledby="pills-yesterday-tab">
                        <div class="table-responsive">
