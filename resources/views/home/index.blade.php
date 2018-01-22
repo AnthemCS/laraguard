@@ -3,7 +3,6 @@
 
     <div class="row">
 
-
         <div class="col-md-8">
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                 <li class="px-4"><h2>Reservations</h2></li>
@@ -20,7 +19,7 @@
             <hr>
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-yesterday" role="tabpanel" aria-labelledby="pills-yesterday-tab">
-                    <div class="table-responsive">
+                    <div class="">
                         <table class="table table-hover table-sm">
                             <thead>
 
@@ -54,16 +53,20 @@
                                                 <td>{{ $r->nights }}</td>
                                                 <td>{{ $r->comments }}</td>
                                         <td><div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
                                                    Action
                                                 </button>
-                                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu2">
-                                                    <a class="dropdown-item" >Action</a>
-                                                    <a class="dropdown-item" >Another action</a>
-                                                    <a class="dropdown-item" >Something else here</a>
+                                                <div class="dropdown-menu" style="z-index: 100" aria-labelledby="dropdownMenu2">
+                                                    <a class="dropdown-item" >Check-In</a>
+                                                    <a class="dropdown-item" >Cancel</a>
+                                                    <a class="dropdown-item" >Approve</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="{{ route('invoices.show', 1) }}"><span data-feather="printer"></span> Print Invoice</a>
                                                 </div>
-                                            </div></td>
+                                            </div>
+                                        </td>
                                     </tr>
+
                             @endforeach
                             </tbody>
                         </table>

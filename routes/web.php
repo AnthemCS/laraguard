@@ -30,6 +30,8 @@ Route::get('home/create-reservation/{roomId}', 'HomeController@getNewReservation
 
 # Reservation Routes
 Route::resource('reservations', 'ReservationController');
+Route::get('/reservations/{rsvId}/add-room', 'ReservationController@getAddRoomToRsv')->name('reservations.add-room');
+Route::get('/reservations/{rsvId/remove-room', 'ReservationController@getRemoveRoomFromRsv')->name('reservations.remove-room');
 
 # Room Routes
 Route::resource('/rooms', 'RoomController');

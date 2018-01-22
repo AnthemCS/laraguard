@@ -6,7 +6,6 @@
                 <h3 class="d-flex justify-content-between align-items-center mb-3">
                     <span>Show Reservation  # {{ $rsv->id }} </span>
                     <a href="{{ route('reservations.edit', $rsv->id) }}" class="btn btn-outline-secondary">Edit Reservation</a>
-
                 </h3>
                 <hr>
 
@@ -131,19 +130,25 @@
                                                     <td>2</td>
                                                     <td>0</td>
                                                     <td>R {{ $room->price }}</td>
-                                                    <td><a class="btn btn-outline-danger btn-sm" href="{{ route('rooms.destroy', $room->id) }}">Remove</a></td>
+                                                    <td><a class="btn btn-outline-danger btn-sm" href="{{ route('reservations.remove-room', $rsv->id) }}">Remove</a></td>
                                                 </tr>
                                                 @endforeach
                                               @endif
+
                                                 <tr>
+                                                    <form id="add-room-form" action="{{ route('reservations.add-room', $rsv->id) }}" method="GET" style="display: none;">
                                                     <td colspan="5">
-                                                        <select class="form-control" name="" id="">
-                                                           @foreach($rsv->rooms as $room)
-                                                            <option value="{{ $room->room_title }}">{{ $room->room_title }}</option>
+
+                                                            {{ csrf_field() }}
+                                                        <select class="form-control" name="roomId" id="">
+                                                           @foreach($roomList as $room)
+                                                            <option value="{{ $room->id }}">{{ $room->room_title }}</option>
                                                            @endforeach
                                                         </select>
+
                                                     </td>
-                                                    <td><a href="#add-room" class="btn btn-sm btn-outline-primary"> Add a Room</a></td>
+                                                    <td><a onclick="event.preventDefault();document.getElementById('add-room-form').submit();" href="{{ route('reservations.add-room', $rsv->id) }}" class="btn btn-sm btn-outline-primary"> Add a Room</a></td>
+                                                    </form>
                                                 </tr>
 
                                                 </tbody>

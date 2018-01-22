@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Reservation;
 use App\Guest;
+use App\Room;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -19,6 +20,25 @@ class ReservationController extends Controller
         return view('reservation.index', ['rsvs' => Reservation::all()]);
     }
 
+    public function getAddRoomToRsv(Request $request,$rsvId)
+    {
+        //TODO : make a pivot table for rooms to reservation
+        $rsv = Reservation::find($rsvId);
+        $room = Room::find($request->input('roomId'));
+        $rsv->room_id = $room->id;
+        $rsv->update();
+
+        return redirect('/reservations/'. $rsv->id)->with('success', 'Room Successfully added!');
+    }
+
+    public function getRemoveRoomFromRsv($rsvId)
+    {
+        //TODO : make a pivot table for rooms to reservation
+        $rsv = Reservation::find($rsvId);
+        $rsv->room_id = 0; // null value
+        $rsv->update();
+        return redirect('/reservations/'. $rsv->id)->with('success', 'Room Successfully added!');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -80,7 +100,8 @@ class ReservationController extends Controller
         # Fetch the reservation selected to show
         Reservation::find($id);
         # create a list of statuses to display on the ui
-        return view('reservation.show', ['rsv' => Reservation::find($id) ]);
+
+        return view('reservation.show', ['roomList' => Room::all(), 'rsv' => Reservation::find($id) ]);
     }
 
     /**

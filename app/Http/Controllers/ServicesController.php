@@ -26,6 +26,7 @@ class ServicesController extends Controller
     public function create()
     {
         //
+        return view('services.create');
     }
 
     /**
@@ -37,6 +38,8 @@ class ServicesController extends Controller
     public function store(Request $request)
     {
         //
+        Services::create($request->all());
+        return redirect('/services')->with('success','Service successfully added!');
     }
 
     /**
