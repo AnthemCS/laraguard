@@ -27502,12 +27502,13 @@ try {
 
     //require('bootstrap-sass');
     __webpack_require__(135);
-    //require('moment');
+    var moment = __webpack_require__(0);
+    window.moment = moment;
     //require('startbootstrap-sb-admin');
     $(function () {
 
         var $duration = $('input[name="daterange"]').daterangepicker({
-
+            "minDate": moment().format("YYYY-MM-DD"),
             locale: {
                 format: 'YYYY-MM-DD'
             }
@@ -27515,10 +27516,17 @@ try {
 
         var $arrival_date = $('input[name="arrival_date"]');
         var $departure_date = $('input[name="departure_date"]');
+        var $nights = $('input[name="nights"]');
 
         $duration.on('apply.daterangepicker', function (ev, picker) {
+
+            var arrival_day = new Date(picker.startDate.format('YYYY-MM-DD')).getDay();
+            var dep_day = new Date(picker.endDate.format('YYYY-MM-DD')).getDay();
+
             $arrival_date.val(picker.startDate.format('YYYY-MM-DD'));
             $departure_date.val(picker.endDate.format('YYYY-MM-DD'));
+
+            $nights.val(dep_day - arrival_day);
         });
     });
 } catch (e) {}

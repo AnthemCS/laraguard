@@ -17,7 +17,7 @@ class Reservation extends Model
         "adults",
         "children",
         "comments",
-        "status"
+        "status_id"
     ];
 
 
@@ -34,6 +34,11 @@ class Reservation extends Model
     public function services()
     {
         return $this->hasMany('App\Services', 'id', 'service_id');
+    }
+
+    public function status()
+    {
+        return $this->hasOne('App\Status', 'id', 'status_id');
     }
     
 

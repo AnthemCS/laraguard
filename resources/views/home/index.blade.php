@@ -36,37 +36,37 @@
                             </thead>
                             <tbody>
                             @foreach($roomReservations as $r)
-
                                     <tr>
                                         <td>{{ $r->id }}</td>
-                                        <td> <span class="badge badge-pill badge-dark">{{ $r->status  }}</span></td>
+                                        <td> <span class="badge badge-pill badge-{{ $r->status->type }}">{{ $r->status->name  }}</span></td>
                                         <td>{{ $r->arrival_date }}</td>
                                         <td>{{ $r->departure_date }}</td>
                                         <td><a href="{{ route('reservations.show',$r->id ) }}">{{ $r->guest->firstname }} {{ $r->guest->lastname }}</a></td>
                                        @if(!is_null($r->rooms))
                                             <td>
                                                @foreach($r->rooms as $room)
-                                                <span class="badge badge-pill badge-secondary">{{ $room->id }}</span>
+                                                 <span class="badge badge-pill badge-secondary">{{ $room->id }}</span>
                                                @endforeach
                                        @endif
                                             </td>
                                                 <td>{{ $r->nights }}</td>
                                                 <td>{{ $r->comments }}</td>
-                                        <td><div class="dropdown">
+                                        <td>
+                                            <div class="dropdown">
                                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
                                                    Action
                                                 </button>
                                                 <div class="dropdown-menu" style="z-index: 100" aria-labelledby="dropdownMenu2">
-                                                    <a class="dropdown-item" >Check-In</a>
-                                                    <a class="dropdown-item" >Cancel</a>
-                                                    <a class="dropdown-item" >Approve</a>
+
+                                                   @foreach($statuses as $status)
+                                                    <a href="{{ route('reservations.status-change', ["rsvId" => $r->id , "statusId" => $status->id ]) }}" class="dropdown-item"><span class="text-{{ $status->type }}" data-feather="circle"></span> {{ $status->name }}</a>
+                                                   @endforeach
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" href="{{ route('invoices.show', 1) }}"><span data-feather="printer"></span> Print Invoice</a>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
-
                             @endforeach
                             </tbody>
                         </table>

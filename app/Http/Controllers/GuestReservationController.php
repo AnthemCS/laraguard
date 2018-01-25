@@ -38,13 +38,13 @@ class GuestReservationController extends Controller
 
         Reservation::create([
             "room_id" => $roomId,
-             "guest_id" => $newGuest->id,
+            "guest_id" => $newGuest->id,
             "arrival_date" => date_format(date_create($data['arrival_date']), 'Y-m-d'),
             "departure_date" => date_format(date_create($data['departure_date']), 'Y-m-d'),
             "adults" => $data['adults'],
             "children" => $data['children'],
             "comments" => $data['comments'],
-            "status" => "New",
+            "status_id" => 3, // 3 New as Status
         ]);
 
         return redirect('/')->with('status', 'Reservation Sent Successfully');

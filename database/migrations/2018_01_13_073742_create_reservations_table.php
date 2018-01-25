@@ -24,7 +24,7 @@ class CreateReservationsTable extends Migration
             $table->integer("adults");
             $table->integer("children");
             $table->longText("comments");
-            $table->string("status");
+            $table->integer("status_id")->nullable();
             $table->timestamps();
             $table->index(['guest_id','room_id']);
         });

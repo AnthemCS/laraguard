@@ -41,9 +41,10 @@
                        <div class="form-group{{ $errors->has('') ? ' has-error' : '' }} col-md-2">
                            <select name="guest" class="form-control form-control-lg" id="guest" required autofocus>
 
-                               <option value="mr">All Statuses</option>
-                               <option value="mrs">Check-In</option>
-                               <option value="miss">Cancelled</option>
+                               <option value="*">All Statuses</option>
+                               @foreach($statuses as $status)
+                                   <option value="{{ $status->id }}">{{ $status->name }}</option>
+                               @endforeach
                            </select>
 
                        </div>
@@ -110,15 +111,17 @@
 
                                    <tr>
                                        <td>{{ $r->id }}</td>
-                                       <td> <span class="badge badge-pill badge-dark">{{ $r->status  }}</span></td>
+                                       <td> <span class="badge badge-pill badge-{{ $r->status->type }}">{{ $r->status->name  }}</span></td>
                                        <td>{{ $r->arrival_date }}</td>
                                        <td>{{ $r->departure_date }}</td>
                                        <td><a href="{{ route('reservations.show',$r->id ) }}">{{ $r->guest->firstname }} {{ $r->guest->lastname }}</a></td>
                                        <td>{{ ($r->room)? $r->room->title: 'N/A'  }}</td>
                                        <td>{{ $r->nights }}</td>
                                        <td>{{ $r->comments }}</td>
-                                       <td><a href="" class="btn btn-outline-success btn-sm">Check-In</a> <a
-                                                   href="#print-invoice" class="btn btn-outline-primary btn-sm">Print Invoice</a></td>
+                                       <td>
+                                           <a href="" class="btn btn-outline-success btn-sm">Check-In</a> <a
+                                                   href="#print-invoice" class="btn btn-outline-primary btn-sm">Print Invoice</a>
+                                       </td>
                                    </tr>
                                    </a>
                                @endforeach

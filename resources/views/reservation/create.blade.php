@@ -67,7 +67,7 @@
                         <label for="nights" class="control-label">No. of Nights</label>
 
 
-                        <input id="nights" type="number"  class="form-control" value="{{ old('nights')}}" name="nights" required>
+                        <input id="nights" type="number" class="form-control" value="{{ old('nights')}}" name="nights" readonly/>
                         @if ($errors->has('nights'))
                             <span class="help-block">
                                         <strong>{{ $errors->first('nights') }}</strong>

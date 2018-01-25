@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Room;
 
+use App\Status;
 use Illuminate\Http\Request;
 use App\Reservation;
 class HomeController extends Controller
@@ -26,7 +27,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        return view('home.index', ["roomReservations" => Reservation::with('rooms')->get()]);
+        return view('home.index', ["roomReservations" => Reservation::with('rooms')->get(), 'statuses' => Status::all()]);
     }
 
     public function getFreeRoomsToday()

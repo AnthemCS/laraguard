@@ -101,7 +101,7 @@
                         <div class="card-header">
                             <h4 class="d-flex justify-content-between align-items-center mb-3">
                                 <span class="">Reserved rooms</span>
-                                <a href="{{ route('rooms.create', $rsv->id) }}" class="btn btn-sm btn-outline-success">+ Add Room</a>
+                                <a href="{{ route('rooms.create', $rsv->id) }}" class="btn btn-sm btn-success">Create a Room</a>
                             </h4>
                         </div>
                         <div class="card-body">
@@ -181,7 +181,7 @@
                                            <tr>
                                                <td colspan="3">
                                                    <select class="form-control" name="" id="">
-                                                       @foreach($rsv->services as $s)
+                                                       @foreach($servicesList as $s)
                                                            <option value="{{ $s->name }}">{{ $s->name }}</option>
                                                        @endforeach
                                                    </select>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Reservation;
 use App\Guest;
 use App\Room;
+use App\Services;
+use App\Status;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -17,7 +19,7 @@ class ReservationController extends Controller
     public function index()
     {
         //
-        return view('reservation.index', ['rsvs' => Reservation::all()]);
+        return view('reservation.index', ['rsvs' => Reservation::all(), 'statuses' => Status::all()]);
     }
 
     public function getAddRoomToRsv(Request $request,$rsvId)
@@ -38,6 +40,18 @@ class ReservationController extends Controller
         $rsv->room_id = 0; // null value
         $rsv->update();
         return redirect('/reservations/'. $rsv->id)->with('success', 'Room Successfully added!');
+    }
+
+
+    public function getReservationStatusChange($rsvId, $statusId)
+    {
+         $rsv = Reservation::find($rsvId);
+         $status = Status::find($statusId);
+
+         $rsv->status_id = $status->id;
+         $rsv->update();
+
+        return redirect('/home')->with('success', 'Status Successfully changed!');
     }
     /**
      * Show the form for creating a new resource.
@@ -83,7 +97,7 @@ class ReservationController extends Controller
             "adults" => $data['adults'],
             "children" => $data['children'],
             "comments" => $data['comments'],
-            "status" => "New",
+            "status_id" => 3, // 3 - New as status
         ]);
 
         return redirect('/')->with('status', 'Reservation Sent Successfully');
@@ -101,7 +115,7 @@ class ReservationController extends Controller
         Reservation::find($id);
         # create a list of statuses to display on the ui
 
-        return view('reservation.show', ['roomList' => Room::all(), 'rsv' => Reservation::find($id) ]);
+        return view('reservation.show', ['roomList' => Room::all(), 'servicesList' => Services::all(),'rsv' => Reservation::find($id) ]);
     }
 
     /**
