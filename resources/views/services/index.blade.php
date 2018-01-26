@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-md-8">
                 <h5 class="">Available Services</h5>
-                <div class="table-responsive">
+
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
@@ -33,14 +33,22 @@
                                 <td>{{ $s->description }}</td>
                                 <td>{{ $s->unit_price }}</td>
                                 <td>
-                                    <a href="{{ route('services.edit', $s->id) }}" class="btn btn-sm btn-outline-primary">Action</a> |
-                                    <a href="{{ route('services.edit', $s->id) }}" class="btn btn-sm btn-danger">Delete</a>
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+                                            Action
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                            <a href="" class="dropdown-item"> <span data-feather="eye"></span> View</a>
+                                            <a href="" class="dropdown-item"><span data-feather="edit-2"></span> Edit</a>
+                                            <a href="{{ route('services.destroy', $s->id) }}" class="dropdown-item"><span data-feather="trash-2"></span> Delete</a>
+                                        </div>
+                                    </div>
+
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
-                </div>
             </div>
             <div class="col-md-4">
                 <h5 class="">Create a Service</h5>
@@ -61,7 +69,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                                <label for="description" class=" control-label">No of Beds</label>
+                                <label for="description" class=" control-label">Describe the service</label>
 
                                 <textarea id="description" class="form-control" name="description" placeholder="About your service..." required>{{ old('description') }}</textarea>
                                 @if ($errors->has('description'))

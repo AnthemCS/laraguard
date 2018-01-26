@@ -191,18 +191,11 @@
                     <h4 class="mb-3">Reservation Information</h4>
 
                     <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
-                        <label for="status" class="control-label">Reservation status <span class="badge badge-pill">{{ $rsv->status }}</span></label>
-
-
+                        <label for="status" class="control-label">Reservation status <span class="badge badge-pill">{{ $rsv->status->name }}</span></label>
                         <select name="status" class="form-control" id="country" required>
-                            <option value="">Choose...</option>
-                            <option value="Checked-In" selected>Check-In</option>
-                            <option value="Checked-Out">Check-Out</option>
-                            <option value="Cancelled">Cancel</option>
-                            <option value="Modified">Modify</option>
-                            <option value="Approved">Approve</option>
-                            <option value="No-Show">No Show</option>
-
+                            @foreach($statuses as $st)
+                                <option value="{{ $st->id }}" {{ ($st->name === $rsv->status->name)? 'selected': '' }}>{{ $st->name }}</option>
+                            @endforeach
                         </select>
 
                         @if ($errors->has('status'))

@@ -79,12 +79,13 @@
                                 </li>
                                 <li href="#" class="list-group-item d-flex justify-content-between lh-condensed">
                                     <div>
-                                        <h6 class="my-0">Status</h6>
+                                        <h6 class="my-0">Status <small class="text-{{ $rsv->status->type }}">{{ $rsv->status->name }}</small></h6>
                                     </div>
                                     <span class="text-muted">
                                        <select class="form-control" name="" id="">
-                                         <option value="">Check-In</option>
-                                           <option value="">Check-Out</option>
+                                         @foreach($statuses as $st)
+                                               <option value="{{ $st->id }}">{{ $st->name }}</option>
+                                         @endforeach
                                        </select>
                                   </span>
                                 </li>
@@ -130,7 +131,7 @@
                                                     <td>2</td>
                                                     <td>0</td>
                                                     <td>R {{ $room->price }}</td>
-                                                    <td><a class="btn btn-outline-danger btn-sm" href="{{ route('reservations.remove-room', $rsv->id) }}">Remove</a></td>
+                                                    <td><a class="btn btn-outline-danger btn-sm" href="{{ route('reservations.remove-room', ['rsvId' => $rsv->id ]) }}">Remove</a></td>
                                                 </tr>
                                                 @endforeach
                                               @endif
@@ -179,14 +180,17 @@
                                                 @endforeach
                                            @endif
                                            <tr>
+                                               <form id="add-service-form" action="{{ route('reservations.add-service', $rsv->id) }}" method="GET" style="display: none;">
+                                                   {{ csrf_field() }}
                                                <td colspan="3">
-                                                   <select class="form-control" name="" id="">
+                                                   <select class="form-control" name="serviceId" id="">
                                                        @foreach($servicesList as $s)
-                                                           <option value="{{ $s->name }}">{{ $s->name }}</option>
+                                                           <option value="{{ $s->id }}">{{ $s->name }}</option>
                                                        @endforeach
                                                    </select>
                                                </td>
-                                               <td><a href="#add-room" class="btn btn-sm btn-outline-primary"> Add a Service</a></td>
+                                               <td><a onclick="event.preventDefault();document.getElementById('add-service-form').submit();" href="{{ route('reservations.add-service', $rsv->id) }}" class="btn btn-sm btn-outline-primary"> Add a Service</a></td>
+                                            </form>
                                            </tr>
                                                 </tbody>
                                             </table>

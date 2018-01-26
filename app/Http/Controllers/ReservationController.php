@@ -37,11 +37,22 @@ class ReservationController extends Controller
     {
         //TODO : make a pivot table for rooms to reservation
         $rsv = Reservation::find($rsvId);
-        $rsv->room_id = 0; // null value
+        $rsv->room_id = NULL; // null value
         $rsv->update();
-        return redirect('/reservations/'. $rsv->id)->with('success', 'Room Successfully added!');
+        return redirect('/reservations/'. $rsv->id)->with('success', 'Room Successfully removed!');
     }
 
+    public function getAddServiceToRsv(Request $request ,$rsvId)
+    {
+        $rsv = Reservation::find($rsvId);
+        $service = Services::find($request->input('serviceId'));
+
+        $rsv->service_id = $service->id;
+
+        $rsv->update();
+
+        return redirect('/reservations/'.$rsvId)->with('success', "Service Successfully added!!");
+    }
 
     public function getReservationStatusChange($rsvId, $statusId)
     {
@@ -115,7 +126,7 @@ class ReservationController extends Controller
         Reservation::find($id);
         # create a list of statuses to display on the ui
 
-        return view('reservation.show', ['roomList' => Room::all(), 'servicesList' => Services::all(),'rsv' => Reservation::find($id) ]);
+        return view('reservation.show', ['roomList' => Room::all(), 'servicesList' => Services::all(),'rsv' => Reservation::find($id), 'statuses' => Status::all() ]);
     }
 
     /**
@@ -127,7 +138,7 @@ class ReservationController extends Controller
     public function edit($id)
     {
         //
-        return view('reservation.edit',['rsv' => Reservation::find($id) ] );
+        return view('reservation.edit',['rsv' => Reservation::find($id), 'statuses' => Status::all() ] );
     }
 
     /**
