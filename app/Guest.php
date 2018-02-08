@@ -22,6 +22,20 @@ class Guest extends Model
       "country"            
     ];
 
+    public function getFullNameAttribute()
+    {
+        return ucfirst($this->title). " {$this->firstname} {$this->lastname}";
+    }
+
+    public function getFullAddressAttribute()
+    {
+        return "{$this->addr_line_1} {$this->addr_line_2}, {$this->city}, {$this->postal_code}";
+    }
+    public function getContactDetailsAttribute()
+    {
+        return "{$this->contact_no}, {$this->email }, {$this->fax_no}";
+    }
+
     public function reservations()
     {
         return $this->hasMany('App\Reservation', 'guest_id');

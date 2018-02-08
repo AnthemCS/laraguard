@@ -74,7 +74,6 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $("#btnPrint").on("click", function (e) {
-            console.log(1+1);
             var divContents = $("#printContents").html();
             var printWindow = window.open('', '', 'height=400,width=800');
             printWindow.document.write('<html><head>');

@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome', ['rooms' => App\Room::all()]);
 });
 
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
 Route::get('/test', function () {
     return view('home.test');
 });

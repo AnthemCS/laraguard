@@ -29,7 +29,7 @@
 
 
                     <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
-                    <label for="status" class="control-label">Reservation status <span class="badge badge-pill">{{ $rsv->status }}</span></label>
+                    <label for="status" class="control-label">Reservation status <span class="badge badge-pill badge-{{ $rsv->status->type }}">{{ $rsv->status->name }}</span></label>
 
 
                     <select name="status" class="form-control" id="country" required>
@@ -40,14 +40,13 @@
                         <option value="Modified">Modify</option>
                         <option value="Approved">Approve</option>
                         <option value="No-Show">No Show</option>
-
                     </select>
 
                     @if ($errors->has('status'))
                         <span class="help-block">
                                     <strong>{{ $errors->first('status') }}</strong>
                                 </span>
-                @endif
+                    @endif
 
             </div>
                     <div class="form-group{{ $errors->has('duration') ? ' has-error' : '' }}">
@@ -59,7 +58,6 @@
                                                     <strong>{{ $errors->first('duration') }}</strong>
                                                 </span>
                         @endif
-
 
                     </div>
 

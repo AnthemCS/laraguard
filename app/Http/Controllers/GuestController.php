@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Guest;
 use Illuminate\Http\Request;
 
 class GuestController extends Controller
@@ -14,7 +15,7 @@ class GuestController extends Controller
     public function index()
     {
         //
-        return view('guests.index');
+        return view('guests.index', [ 'guests' => Guest::all()]);
     }
 
     /**
