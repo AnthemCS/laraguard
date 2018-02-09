@@ -12,17 +12,46 @@
             </div>
         </div>
         <div class="row" id="printContents">
+
             <div class="col">
+                <div id="accordion" class="mb-2">
+                    <div class="card border-primary">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <a class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"> Business Address and Contact Details, Title, Summary, and Logo</a>
+                            </h5>
+                        </div>
+
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="https://dummyimage.com/300x300/000000/ffffff&text=Lapologa+Logo+Image" alt="Lapologa Logo Image">
+                                        <a href="#" class="btn btn-link">Change Logo Image</a>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <label for="">Invoice</label>
+                                        <input dir="rtl" type="text" placeholder="Invoice" class="form-control">
+                                        <label for="">Summary</label>
+                                        <input type="text" placeholder="Summary( e.g description of invoice)" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="card border-primary">
                     <div class="card-body">
                         <div class="row mb-5">
                             <div class="col">
                                 <label for="">Guest</label>
-                                <select name="guest" id="" class="form-control">
-                                    <option value="">Guest 1</option>
-                                    <option value="">Guest 2</option>
-                                    <option value="">Guest 3</option>
-                                </select>
+                                <input type="text" class="form-control" list="guests">
+                                <datalist id="guests">
+                                   @foreach($guests as $g)
+                                    <option value="{{ $g->fullName }}">
+                                   @endforeach
+                                </datalist>
                             </div>
                             <div class="col">
                                 <label for="">Invoice Date</label>
@@ -138,6 +167,26 @@
                             </div>
                         </div>
                       
+                    </div>
+                </div>
+
+                <div id="footer" class="mt-2">
+                    <div class="card border-primary">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <a class="btn btn-link" data-toggle="collapse" data-target="#footer-invoice" aria-expanded="false" aria-controls="footer-invoice"> Footer</a>
+                            </h5>
+                        </div>
+
+                        <div id="footer-invoice" class="collapse" aria-labelledby="headingOne" data-parent="#footer">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <textarea name="footer" class="form-control" placeholder="Enter a footer for this invoice (e.g. tax information, thank you note)" style="border: 0px solid transparent" id="" cols="30" rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

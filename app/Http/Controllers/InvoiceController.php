@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Guest;
+use App\Status;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
@@ -14,7 +16,7 @@ class InvoiceController extends Controller
     public function index()
     {
         //
-        return view('invoices.index');
+        return view('invoices.index', ["statuses" => Status::all()]);
     }
 
     /**
@@ -25,7 +27,7 @@ class InvoiceController extends Controller
     public function create()
     {
         //
-        return view('invoices.create');
+        return view('invoices.create', ["guests" => Guest::all()]);
     }
 
     /**
