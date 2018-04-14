@@ -10,13 +10,20 @@ window._ = require('lodash');
 try {
     window.$ = window.jQuery = require('jquery');
 
-    //require('bootstrap-sass');
+    require('bootstrap');
     require('daterangepicker');
+    var feather = require('feather-icons');
+    //var popper = require('popper');
     var moment = require('moment');
+
     window.moment = moment;
+    //window.popper = popper;
+
     //require('startbootstrap-sb-admin');
+    require('select2');
     $(function() {
 
+    feather.replace();
         var $duration = $('input[name="daterange"]').daterangepicker({
             "minDate": moment().format("YYYY-MM-DD"),
             locale: {
@@ -36,8 +43,22 @@ try {
             $arrival_date.val(picker.startDate.format('YYYY-MM-DD'));
             $departure_date.val(picker.endDate.format('YYYY-MM-DD'));
 
-            $nights.val(dep_day - arrival_day);
+            var day_diff = dep_day - arrival_day;
+            if(day_diff < 0){
+                day_diff += 7;
+            }
+            $nights.val((day_diff));
 
+        });
+
+        $(document).ready(function(){
+            $('.select2').select2({
+                    width: "resolve"
+            });
+
+            $('.select2-clients').select2({
+                width: "resolve"
+            });
         });
     });
 

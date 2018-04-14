@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Guest;
+use App\InvoiceItem;
+use App\Item;
 use App\Status;
 use Illuminate\Http\Request;
+use ConsoleTVs\Invoices\Classes\Invoice as Invoice;
 
 class InvoiceController extends Controller
 {
@@ -19,6 +22,11 @@ class InvoiceController extends Controller
         return view('invoices.index', ["statuses" => Status::all()]);
     }
 
+    public function getAddItemToBillingInvoice(Request $request, $invoiceId)
+    {
+
+        return redirect()->route('invoices.create')->with('success', 'Room Successfully added!');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -27,7 +35,7 @@ class InvoiceController extends Controller
     public function create()
     {
         //
-        return view('invoices.create', ["guests" => Guest::all()]);
+        return view('invoices.create', ["guests" => Guest::all(), "itemList" => Item::all(), "invoiceItems" => InvoiceItem::all()]);
     }
 
     /**
@@ -38,7 +46,8 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
+
     }
 
     /**
@@ -86,4 +95,5 @@ class InvoiceController extends Controller
     {
         //
     }
+
 }

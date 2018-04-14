@@ -40,4 +40,9 @@ class Guest extends Model
     {
         return $this->hasMany('App\Reservation', 'guest_id');
     }
+
+    public function billingInvoice()
+    {
+        return $this->belongsTo('App\BillingInvoice', 'guest_id');
+    }
 }

@@ -10,7 +10,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <link rel="stylesheet" href="{{ asset('lib/bootstrap/dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('lib/bootstrap/css/bootstrap.min.css') }}">
 
     <!-- Styles -->
@@ -59,34 +58,15 @@
     <!-- Bootstrap core JavaScript-->
 
     <!-- Scripts -->
-
-    <script src="{{ asset('lib/startbootstrap-sb-admin/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('lib/startbootstrap-sb-admin/vendor/popper/popper.min.js') }}"></script>
-    <script src="{{ asset('lib/startbootstrap-sb-admin/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+jq
+<script src="{{ asset('lib/bootstrap/js/bootstrap.min.js') }}"></script>
 <script>
-    feather.replace()
+
 </script>
     <script src="{{ asset('js/app.js') }}"></script>
 
-<script type="text/javascript">
-    $(document).ready(function(){
-        $("#btnPrint").on("click", function (e) {
-            var divContents = $("#printContents").html();
-            var printWindow = window.open('', '', 'height=400,width=800');
-            printWindow.document.write('<html><head>');
-            printWindow.document.write('<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"><title>DIV Contents</title>');
-            printWindow.document.write('</head><body >');
-            printWindow.document.write(divContents);
-            printWindow.document.write('</body></html>');
-            printWindow.document.close();
-            printWindow.print();
-        });
-    });
-
-</script>
 
 </body>
 </html>

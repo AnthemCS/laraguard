@@ -40,6 +40,9 @@ class Reservation extends Model
     {
         return $this->hasOne('App\Status', 'id', 'status_id');
     }
-    
+    public function getRoomListAttribute(){
+        $roomList = $this->rooms->implode('room_no', ',');
+        return "{$roomList}";
+    }
 
 }

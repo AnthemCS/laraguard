@@ -115,7 +115,9 @@
                                        <td>{{ $r->arrival_date }}</td>
                                        <td>{{ $r->departure_date }}</td>
                                        <td><a href="{{ route('reservations.show',$r->id ) }}">{{ $r->guest->firstname }} {{ $r->guest->lastname }}</a></td>
-                                       <td>{{ ($r->room)? $r->room->title: 'N/A'  }}</td>
+                                       <td>
+                                           {{ ($r->rooms)? $r->roomList : 'N/A'  }}
+                                       </td>
                                        <td>{{ $r->nights }}</td>
                                        <td>{{ $r->comments }}</td>
                                        <td>
