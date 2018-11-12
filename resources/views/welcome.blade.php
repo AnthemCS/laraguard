@@ -3,12 +3,11 @@
     <div class="container">
         <div class="row">
             <div class="jumbotron">
-                <h1 class="display-4">Hello, world!</h1>
-                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                <h1 class="display-4">ComfortStay Manager Prototype</h1>
+                <p class="lead">ComfortStay Manager is a prototype for a campus room management system which will help Universities better manage room allocation of students inside the campus.</p>
                 <hr class="my-4">
-                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
                 <p class="lead">
-                    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                    <a class="btn btn-primary btn-lg" href="{{url("/register")}}" role="button">Register a new account</a> OR <a class="btn btn-secondary btn-lg" href="{{url("/login")}}" role="button">Login into existing account</a>
                 </p>
             </div>
         </div>
